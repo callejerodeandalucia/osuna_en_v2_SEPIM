@@ -75,13 +75,18 @@ function geolocalizar(){
 			  cargarCategoria();
 		  };
 		  var errorFunction = function(){
-			  alert("Se ha producido un error al geolocalizar");
+			  alert("Verify that you have the location of your device turned on and that you are near the city: Osuna");
 			  loading(false);
 		  };
-		  loading(true);
-		  navigator.geolocation.getCurrentPosition(successFunction, errorFunction);
+		  loading(true);	
+		  navigator.geolocation.getCurrentPosition(successFunction, errorFunction,{
+			maximumAge: 75000,
+			timeout: 7000
+		});
+		    
 		} else {
-		  alert("El navegador utilizado no soporta la geolocalización");
+		  loading(false);
+		  alert("The browser used does not support geolocation");
 		}
 }
 
